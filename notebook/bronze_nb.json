@@ -1,0 +1,84 @@
+{
+	"name": "bronze_nb",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "ecomsparkpool",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "9962ffae-87bb-4762-85c4-1e89121bbd53"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/c4ad3c4f-f7b0-460d-94fa-b09fd0063304/resourceGroups/ecommerce_analytics/providers/Microsoft.Synapse/workspaces/ecommerce-synapse-analytics/bigDataPools/ecomsparkpool",
+				"name": "ecomsparkpool",
+				"type": "Spark",
+				"endpoint": "https://ecommerce-synapse-analytics.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/ecomsparkpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.5",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
+				"source": [
+					"from pyspark.sql.functions import*\n",
+					"from pyspark.sql.types import *\n",
+					"df = spark.read.format(\"csv\")\\\n",
+					"     .option(\"header\",\"true\")\\\n",
+					"     .option(\"inferschema\", \"true\")\\\n",
+					"     .load(\"abfss://{source_container}@ecomdevstorage2.dfs.core.windows.net/{source_folder}/*\")\n",
+					"\n",
+					"df = df \\\n",
+					"    .withColumn(\"file_path\", input_file_name()) \\\n",
+					"    .withColumn(\"last_update_ts\", current_timestamp())\n",
+					"\n",
+					"df.write.format(\"delta\") \\\n",
+					"    .mode(\"overwrite\") \\\n",
+					"    .save(\"abfss://{target_container}@ecomdevstorage2.dfs.core.windows.net/{target_folder}/\")\n",
+					""
+				],
+				"execution_count": 14
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					""
+				],
+				"execution_count": null
+			}
+		]
+	}
+}

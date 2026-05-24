@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "CREATE TABLE [dbo].[metatable]\n(\n    source_container VARCHAR(50), \n    source_folder VARCHAR(50),\n    target_container VARCHAR(50),\n    target_folder VARCHAR(50)\n)\n\n\nINSERT INTO [dbo].[metatable]\n(source_container, source_folder, target_container, target_folder)\nVALUES ('retail-data','sales_orders','bronze','sales_orders');\nGO\n\nINSERT INTO [dbo].[metatable]\n(source_container, source_folder, target_container, target_folder)\nVALUES ('retail-data','sales','bronze','sales');\nGO\n\nSELECT * FROM metatable\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "sqlpoolecom",
+				"poolName": "sqlpoolecom"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
