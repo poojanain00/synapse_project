@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "ecommerce-synapse-analytics"
+		},
+		"ecom-synapse-analytics-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:ecom-synapse-analytics.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"ecom-synapse-analytics-dev-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:ecom-synapse-analytics-dev.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"ecom-synapse-analytics1-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:ecom-synapse-analytics1.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"ecommerce-synapse-analytics-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:ecommerce-synapse-analytics.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"retail-data-dev-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:retail-data-dev.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"ecom-synapse-analytics-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://pnain.dfs.core.windows.net"
+		},
+		"ecom-synapse-analytics-dev-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://pnain.dfs.core.windows.net"
+		},
+		"ecom-synapse-analytics1-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://pnain.dfs.core.windows.net"
+		},
+		"ecommerce-synapse-analytics-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://pnain.dfs.core.windows.net"
+		},
+		"retail-data-dev-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://pnain.dfs.core.windows.net"
+		}
+	}
+}
